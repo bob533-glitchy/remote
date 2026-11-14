@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TLD Remote</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+  <script defer src="remote.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">T</span><div><b>TLD REMOTE</b><small>REMOTE DESKTOP</small></div></div>
+      <span class="status"><i id="statusDot"></i><span id="statusText">Not connected</span></span>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">YOUR PC, FROM ANYWHERE</p>
+      <h1>Remote desktop<span>.</span></h1>
+      <p class="muted">Connect to your Windows computer using the pairing code shown in the TLD Remote app.</p>
+    </section>
+
+    <section class="connect-card" id="connectPanel">
+      <label for="pairCode">PAIRING CODE</label>
+      <div class="connect-row">
+        <input id="pairCode" inputmode="numeric" maxlength="6" placeholder="6-digit code" autocomplete="one-time-code">
+        <button id="connectBtn">Connect</button>
+      </div>
+      <p class="hint">Start sharing in the Windows app first. The app must approve remote input.</p>
+      <p id="message" class="message" role="status"></p>
+    </section>
+
+    <section class="screen-card hidden" id="screenPanel">
+      <div class="screen-head"><div><b>Connected desktop</b><small id="sessionInfo">Live session</small></div><button class="danger" id="disconnectBtn">Disconnect</button></div>
+      <div class="screen-wrap" id="screenWrap">
+        <video id="remoteVideo" autoplay playsinline></video>
+        <div id="emptyScreen">Waiting for the Windows desktop stream…</div>
+      </div>
+      <p class="hint">Click the desktop to send mouse input. Keyboard input is sent while the desktop view is focused. Remote control can be turned off at the Windows app at any time.</p>
+    </section>
+    <footer>Secure pairing • Encrypted WebRTC connection • You control when sharing starts</footer>
+  </main>
+</body>
+</html>
